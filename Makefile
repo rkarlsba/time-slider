@@ -6,20 +6,21 @@ endif
 MAINVER=$(shell echo $(VERSION) | cut -f1 -d'-')
 RELEASE=$(shell echo $(VERSION) | cut -f2- -d'-' | sed -e 's/-/./g')
 
-mkinstalldirs = /usr/bin/mkdir -p
-INSTALL = /usr/bin/install
+mkinstalldirs = mkdir -p
+INSTALL = install
 INSTALL_DATA = ${INSTALL} -m 644 -t
 INSTALL_PROGRAM = ${INSTALL} -m 755 -t
 INSTALL_SCRIPT = ${INSTALL} -t
-RM = /usr/bin/rm -f
-RMRF = /usr/bin/rm -Rf
-RMDIR = /usr/bin/rmdir
-RPM = /usr/bin/rpm
-RPMBUILD = /usr/bin/rpmbuild
+RM = rm -f
+RMRF = $RM -Rf
+RMDIR = rmdir
+RPM = rpm
+RPMBUILD = rpmbuild
 # Use python 2.6 if PYTHON environent is not set
-ifeq ($(strip $(PYTHON)),)
-PYTHON = /usr/bin/python2
-endif
+# I don't think this is wise on Linux
+#ifeq ($(strip $(PYTHON)),)
+#PYTHON = /usr/bin/python2
+#endif
 
 SUBDIRS = po data rpm
 
